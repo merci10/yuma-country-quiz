@@ -13,13 +13,18 @@ export function CountryQuiz() {
   const countriesLength = countries.length;
   const optionsNum = 4; // 選択肢のカードの数
 
+  const [quizType, setQuizType] = useState('capital');
   const [options, setOptions] = useState<Option[]>([]); // 選択肢の国の配列
+  const [situation, setSituation] = useState('continued'); //  正解したか不正解したか
   const [correctCount, setCorrectCount] = useState(0); // 正解数
   const [correctOptionNum, setCorrectOptionNum] = useState(getRandomNum(optionsNum)); // options配列の何番目を正解にするかの数
   const [phase, setPhase] = useState('answering'); // 解答中or答え合わせor結果
 
-  const addCorrectCount = () => {
-    setCorrectCount(prev => prev + 1);
+  const getTitleInfo = () => {
+    if (options.length === 0) return;
+
+    if (quizType === 'capital') return options[correctOptionNum].capital;
+    else if (quizType === 'flag') return options[correctOptionNum].name;
   }
 
   const createOptions = () => {
@@ -43,72 +48,85 @@ export function CountryQuiz() {
     }));
   }
 
-  const changePhase = (phase: string) => {
-    setPhase(phase);
-  }
-
   useEffect(() => {
-    // removeOptions();
     createOptions();
   }, []);
-
-  // useEffect(() => {
-  //   if (count === 0) return;
-  // }, [count]);
-
-  console.log(options);
 
   return (
     <div className={styles.countryQuiz}>
       <div className={styles.countryQuizInner}>
         <p className={styles.countryQuizTitle}>COUNTRY QUIZ</p>
-        <div className={styles.countryQuizCard}>
-          <p className={styles.countryQuizQuestionTitle}></p>
+        <div className={styles.countryQuizContainer}>
           {(phase === 'answering' || phase === 'checking') && (
-            <div className={`${styles.countryQuizOptions} ${phase === 'checking' ? styles.isChecking : styles.isAnswering}`}>
-              {options.map((option, i) => {
-                if (correctOptionNum === i) return (
-                  <button
-                    className={`${styles.countryQuizOption} ${phase === 'checking' ? styles.isCorrectOption : ''}`}
-                    key={i}
-                    onClick={() => {
-                      addCorrectCount();
-                      changePhase('checking')
-                      setOptionClickedTrue(option.id)
-                    }}
-                  >
-                    {option.name}だよ
-                  </button>
-                );
-                else return (
-                  <button
-                    className={`${styles.countryQuizOption} ${option.isClicked ? styles.isIncorrectOption : ''}`}
-                    key={i}
-                    onClick={() => {
-                      changePhase('checking');
-                      setOptionClickedTrue(option.id);
-                    }}
-                  >
-                    {option.name}
-                  </button>
-                );
-              })}
+            <div className={styles.countryQuizCard}>
+              <p className={styles.countryQuizQuestionTitle}>{getTitleInfo()} is the capital of</p>
+              <div className={`${styles.countryQuizOptions} ${phase === 'checking' ? styles.isChecking : styles.isAnswering}`}>
+                {options.map((option, i) => {
+                  if (correctOptionNum === i) return (
+                    <button
+                      className={`${styles.countryQuizOption} ${phase === 'checking' ? styles.isCorrectOption : ''}`}
+                      key={option.id}
+                      onClick={() => {
+                        setPhase('checking')
+                        setOptionClickedTrue(option.id)
+                      }}
+                    >
+                      {option.name}だよ
+                    </button>
+                  );
+                  else return (
+                    <button
+                      className={`${styles.countryQuizOption} ${option.isClicked ? styles.isIncorrectOption : ''}`}
+                      key={option.id}
+                      onClick={() => {
+                        setPhase('checking');
+                        setSituation('gameOver');
+                        setOptionClickedTrue(option.id);
+                      }}
+                    >
+                      {option.name}
+                    </button>
+                  );
+                })}
+              </div>
+              {phase === 'checking' && (
+                <button
+                  className={styles.countryQuizNextBtn}
+                  onClick={() => {
+                    if (situation === 'continued') {
+                      setPhase('answering');
+                      setCorrectOptionNum(prev => prev = getRandomNum(optionsNum));
+                      removeOptions();
+                      createOptions();
+                      setCorrectCount(prev => prev + 1)
+                    } else if (situation === 'gameOver') {
+                      setPhase('finished');
+                    }
+                  }}
+                >
+                  Next
+                </button>
+              )}
             </div>
-          )}
-          {phase === 'checking' && (
-            <button
-              className={styles.countryQuizNextBtn}
-              onClick={() => changePhase('finished')}
-            >
-              Next
-            </button>
           )}
           {phase === 'finished' && (
             <div className={styles.countryQuizResult}>
               <div className={styles.countryQuizResultImg}></div>
               <p className={styles.countryQuizResultTitle}>Result</p>
-              <p className={styles.countryQuizResultComment}></p>
-              <button className={styles.countryQuizTryAgainBtn}>Try again</button>
+              <p className={styles.countryQuizResultDescription}>You got <span className={styles.countryQuizResultCorrectAnswerCount}>{correctCount}</span> correct asnwers</p>
+              <button
+                className={styles.countryQuizTryAgainBtn}
+                onClick={() => {
+                  setPhase('answering');
+                  setSituation('continued');
+                  setCorrectOptionNum(prev => prev = getRandomNum(optionsNum));
+                  removeOptions();
+                  createOptions();
+                  setCorrectCount(prev => prev = 0);
+                }}
+              >
+                Try again
+              </button>
             </div>
           )}
         </div>

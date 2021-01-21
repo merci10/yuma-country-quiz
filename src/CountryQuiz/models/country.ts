@@ -23,7 +23,6 @@ export interface Country {
   flag: string;
   regionalBlocs: RegionalBloc[];
   cioc?: string | null;
-  clicked: boolean;
 }
 
 interface RegionalBloc {

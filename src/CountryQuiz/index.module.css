@@ -22,11 +22,14 @@
   color: #F2F2F2;
 }
 
+.countryQuizContainer {
+  background-color: #FFFFFF;
+  border-radius: 24px;
+}
+
 .countryQuizCard {
   position: relative;
   padding: 68px 32px;
-  background-color: #FFFFFF;
-  border-radius: 24px;
 }
 
 .countryQuizCard::before {
@@ -82,7 +85,7 @@
 .isAnswering .countryQuizOption:active {
   opacity: 0.7;
 }
-/* -------------------------------- 解答中のデザイン */
+/* 解答中のデザイン -------------------------------- */
 
 /* 答え合わせ中のデザイン ------------------------- */
 .isChecking .countryQuizOption.isCorrectOption {
@@ -165,3 +168,57 @@
 .countryQuizNextBtn:active {
   opacity: 0.7;
 }
+
+/* resultページ ---------------------------------------- */
+.countryQuizResult {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 49px 0 33px 0;
+}
+
+.countryQuizResultImg {
+  width: 238px;
+  height: 136px;
+  background-image: url(./images/undraw_winners_ao2o\ 2.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.countryQuizResultTitle {
+  margin-top: 72px;
+  font-size: 48px;
+  line-height: 72px;
+  font-weight: bold;
+}
+
+.countryQuizResultDescription {
+  font-size: 18px;
+  line-height: 27px;
+  color: #1D355D;
+}
+
+.countryQuizResultCorrectAnswerCount {
+  font-size: 32px;
+  font-weight: bold;
+  line-height: 48px;
+  color: rgba(115, 206, 153, 1);
+}
+
+.countryQuizTryAgainBtn {
+  margin-top: 72px;
+  width: 209px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 27px;
+  color: #1D355D;
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  border: 2px solid #1D355D;
+  box-sizing: border-box;
+  outline: none;
+}
+
+/* resultページ ---------------------------------------- */
