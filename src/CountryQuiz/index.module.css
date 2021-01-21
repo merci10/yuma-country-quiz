@@ -1,0 +1,167 @@
+.countryQuiz {
+  font-family: poppins;
+  min-height: 100vh;
+  padding-top: 100px;
+  padding-bottom: 80px;
+  background-image: url(./images/background.png);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center center;
+}
+
+.countryQuizInner {
+  margin: 0 auto;
+  width: 464px;
+}
+
+.countryQuizTitle {
+  margin-bottom: 10px;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 54px;
+  color: #F2F2F2;
+}
+
+.countryQuizCard {
+  position: relative;
+  padding: 68px 32px;
+  background-color: #FFFFFF;
+  border-radius: 24px;
+}
+
+.countryQuizCard::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: -74px;
+  right: 0;
+  width: 162px;
+  height: 116px;
+  background-image: url(./images/undraw_adventure_4hum\ 1.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.countryQuizQuestionTitle {
+  margin-bottom: 32px;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 32px;
+  color: #2F527B;
+}
+
+.countryQuizOptions {
+  display: grid;
+  gap: 25px;
+}
+
+.countryQuizOption {
+  position: relative;
+  width: 100%;
+  padding: 15px 56px 14px 82px;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 27px;
+  text-align: left;
+  color: rgba(96, 102, 208, 0.7);
+  background-color: #FFFFFF;
+  border: 2px solid rgba(96, 102, 208, 0.7);
+  border-radius: 12px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+/* 解答中のデザイン -------------------------------- */
+.isAnswering .countryQuizOption:hover {
+  color: #FFFFFF;
+  background-color: #F9A826;
+  border-color: #F9A826;
+  cursor: pointer;
+}
+
+.isAnswering .countryQuizOption:active {
+  opacity: 0.7;
+}
+/* -------------------------------- 解答中のデザイン */
+
+/* 答え合わせ中のデザイン ------------------------- */
+.isChecking .countryQuizOption.isCorrectOption {
+  color: #FFFFFF;
+  background-color: #60BF88;
+  border-color: #60BF88;
+}
+
+.isChecking .countryQuizOption.isCorrectOption::after {
+  display: block;
+  content: url(./images/check_circle.svg);
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translate(0, -50%);
+  width: 25px;
+  height: 25px;
+}
+
+.isChecking .isIncorrectOption {
+  color: #FFFFFF;
+  background-color: #EA8282;
+  border-color: #EA8282;
+}
+
+.isChecking .countryQuizOption.isIncorrectOption::after {
+  display: block;
+  content: url(./images/x_circle.svg);
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translate(0, -50%);
+  width: 25px;
+  height: 25px;
+}
+/* -------------------------- 答え合わせ中のデザイン */
+
+.countryQuizOption::before {
+  position: absolute;
+  top: 50%;
+  left: 19px;
+  font-size: 24px;
+  line-height: 36px;
+  transform: translate(0, -50%);
+}
+
+.countryQuizOption:nth-child(1)::before {
+  content: 'A';
+}
+
+.countryQuizOption:nth-child(2)::before {
+  content: 'B';
+}
+
+.countryQuizOption:nth-child(3)::before {
+  content: 'C';
+}
+
+.countryQuizOption:nth-child(4)::before {
+  content: 'D';
+}
+
+
+.countryQuizNextBtn {
+  display: block;
+  margin: 24px 0 -36px auto;
+  padding: 15px 36px 14px 37px;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 27px;
+  color: #FFFFFF;
+  background-color: #F9A826;
+  box-shadow: 0px 2px 4px rgba(252, 168, 47, 0.4);
+  border: none;
+  border-radius: 12px;
+  outline: none;
+  cursor: pointer;
+}
+
+.countryQuizNextBtn:active {
+  opacity: 0.7;
+}

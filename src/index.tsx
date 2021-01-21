@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import { CountryQuiz } from './CountryQuiz';
+import { CountriesProvider } from './CountryQuiz/components/CountriesProvider';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <CountriesProvider>
+      <CountryQuiz />
+    </CountriesProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
