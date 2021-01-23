@@ -95,7 +95,7 @@ export function CountryQuiz() {
                   onClick={() => {
                     if (situation === 'continued') {
                       setPhase('answering');
-                      setCorrectOptionNum(prev => prev = getRandomNum(optionsNum));
+                      setCorrectOptionNum(getRandomNum(optionsNum));
                       removeOptions();
                       createOptions();
                       setCorrectCount(prev => prev + 1)
@@ -119,10 +119,10 @@ export function CountryQuiz() {
                 onClick={() => {
                   setPhase('answering');
                   setSituation('continued');
-                  setCorrectOptionNum(prev => prev = getRandomNum(optionsNum));
+                  setCorrectOptionNum(getRandomNum(optionsNum));
                   removeOptions();
                   createOptions();
-                  setCorrectCount(prev => prev = 0);
+                  setCorrectCount(0);
                 }}
               >
                 Try again
