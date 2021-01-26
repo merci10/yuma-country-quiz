@@ -39,7 +39,7 @@ export function CountryQuiz() {
     setOptions([]);
   }
 
-  const setOptionClickedTrue = (id: number) => {
+  const setTrueToClickedOption = (id: number) => {
     if (phase === 'checking') return;
 
     setOptions(prev => prev.map(option => {
@@ -68,7 +68,7 @@ export function CountryQuiz() {
                       key={option.id}
                       onClick={() => {
                         setPhase('checking')
-                        setOptionClickedTrue(option.id)
+                        setTrueToClickedOption(option.id)
                       }}
                     >
                       {option.name}だよ
@@ -81,7 +81,7 @@ export function CountryQuiz() {
                       onClick={() => {
                         setPhase('checking');
                         setSituation('gameOver');
-                        setOptionClickedTrue(option.id);
+                        setTrueToClickedOption(option.id);
                       }}
                     >
                       {option.name}
