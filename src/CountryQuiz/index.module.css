@@ -148,6 +148,38 @@
   content: 'D';
 }
 
+.countryQuizOption:nth-child(5)::before {
+  content: 'E';
+}
+
+.countryQuizOption:nth-child(6)::before {
+  content: 'F';
+}
+
+.countryQuizOption:nth-child(7)::before {
+  content: 'G';
+}
+
+.countryQuizOption:nth-child(8)::before {
+  content: 'H';
+}
+
+.countryQuizOption:nth-child(9)::before {
+  content: 'I';
+}
+
+.countryQuizOption:nth-child(10)::before {
+  content: 'J';
+}
+
+.countryQuizOption:nth-child(11)::before {
+  content: 'K';
+}
+
+.countryQuizOption:nth-child(12)::before {
+  content: 'L';
+}
+
 
 .countryQuizNextBtn {
   display: block;
