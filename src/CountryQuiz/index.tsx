@@ -21,7 +21,7 @@ export function CountryQuiz() {
   const [correctOptionNum, setCorrectOptionNum] = useState(getRandomNum(optionsNum)); // options配列の何番目を正解にするかの数
   const [phase, setPhase] = useState('answering'); // 解答中or答え合わせor結果
 
-  const getTitleText = () => {
+  const getThemeText = () => {
     if (options.length === 0) return;
 
     if (quizType === 'capital') return `${options[correctOptionNum].capital} is the capital of`;
@@ -68,7 +68,7 @@ export function CountryQuiz() {
           {quizType === 'capital' && (
             (phase === 'answering' || phase === 'checking') && (
               <div className={styles.countryQuizCard}>
-                <p className={styles.countryQuizQuestionTitle}>{getTitleText()}</p>
+                <p className={styles.countryQuizTheme}>{getThemeText()}</p>
                 <div className={`${styles.countryQuizOptions} ${phase === 'checking' ? styles.isChecking : styles.isAnswering}`}>
                   {options.map((option, i) => {
                     if (correctOptionNum === i) return (
@@ -123,7 +123,7 @@ export function CountryQuiz() {
           {quizType === 'flag' && (
             (phase === 'answering' || phase === 'checking') && (
               <div className={styles.countryQuizCard}>
-                <p className={styles.countryQuizQuestionTitle}>{getTitleText()} is the capital of</p>
+                <p className={styles.countryQuizTheme}>{getThemeText()} is the capital of</p>
                 <div className={`${styles.countryQuizOptions} ${phase === 'checking' ? styles.isChecking : styles.isAnswering}`}>
                   {options.map((option, i) => {
                     if (correctOptionNum === i) return (
