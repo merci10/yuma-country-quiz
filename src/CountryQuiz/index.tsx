@@ -65,115 +65,58 @@ export function CountryQuiz() {
       <div className={styles.countryQuizInner}>
         <p className={styles.countryQuizTitle}>COUNTRY QUIZ</p>
         <div className={styles.countryQuizContainer}>
-          {quizType === 'capital' && (
-            (phase === 'answering' || phase === 'checking') && (
-              <div className={styles.countryQuizCard}>
-                <p className={styles.countryQuizTheme}>{getThemeText()}</p>
-                <div className={`${styles.countryQuizOptions} ${phase === 'checking' ? styles.isChecking : styles.isAnswering}`}>
-                  {options.map((option, i) => {
-                    if (correctOptionNum === i) return (
-                      <button
-                        className={`${styles.countryQuizOption} ${phase === 'checking' ? styles.isCorrectOption : ''}`}
-                        key={option.id}
-                        onClick={() => {
-                          setPhase('checking')
-                          setTrueToClickedOption(option.id)
-                        }}
-                      >
-                        {option.name}だよ
-                      </button>
-                    );
-                    else return (
-                      <button
-                        className={`${styles.countryQuizOption} ${option.isClicked ? styles.isIncorrectOption : ''}`}
-                        key={option.id}
-                        onClick={() => {
-                          setPhase('checking');
-                          setSituation('gameOver');
-                          setTrueToClickedOption(option.id);
-                        }}
-                      >
-                        {option.name}
-                      </button>
-                    );
-                  })}
-                </div>
-                {phase === 'checking' && (
-                  <button
-                    className={styles.countryQuizNextBtn}
-                    onClick={() => {
-                      if (situation === 'continued') {
-                        setPhase('answering');
-                        setCorrectOptionNum(getRandomNum(optionsNum));
-                        removeOptions();
-                        createOptions();
-                        changeQuizType();
-                        setCorrectCount(prev => prev + 1)
-                      } else if (situation === 'gameOver') {
-                        setPhase('finished');
-                      }
-                    }}
-                  >
-                    Next
-                  </button>
-                )}
+          {(phase === 'answering' || phase === 'checking') && (
+            <div className={styles.countryQuizCard}>
+              <p className={styles.countryQuizTheme}>{getThemeText()}</p>
+              <div className={`${styles.countryQuizOptions} ${phase === 'checking' ? styles.isChecking : styles.isAnswering}`}>
+                {options.map((option, i) => {
+                  if (correctOptionNum === i) return (
+                    <button
+                      className={`${styles.countryQuizOption} ${phase === 'checking' ? styles.isCorrectOption : ''}`}
+                      key={option.id}
+                      onClick={() => {
+                        setPhase('checking')
+                        setTrueToClickedOption(option.id)
+                      }}
+                    >
+                      {option.name}だよ
+                    </button>
+                  );
+                  else return (
+                    <button
+                      className={`${styles.countryQuizOption} ${option.isClicked ? styles.isIncorrectOption : ''}`}
+                      key={option.id}
+                      onClick={() => {
+                        setPhase('checking');
+                        setSituation('gameOver');
+                        setTrueToClickedOption(option.id);
+                      }}
+                    >
+                      {option.name}
+                    </button>
+                  );
+                })}
               </div>
-            )
-          )}
-          {quizType === 'flag' && (
-            (phase === 'answering' || phase === 'checking') && (
-              <div className={styles.countryQuizCard}>
-                <p className={styles.countryQuizTheme}>{getThemeText()} is the capital of</p>
-                <div className={`${styles.countryQuizOptions} ${phase === 'checking' ? styles.isChecking : styles.isAnswering}`}>
-                  {options.map((option, i) => {
-                    if (correctOptionNum === i) return (
-                      <button
-                        className={`${styles.countryQuizOption} ${phase === 'checking' ? styles.isCorrectOption : ''}`}
-                        key={option.id}
-                        onClick={() => {
-                          setPhase('checking')
-                          setTrueToClickedOption(option.id)
-                        }}
-                      >
-                        {option.name}だよ
-                      </button>
-                    );
-                    else return (
-                      <button
-                        className={`${styles.countryQuizOption} ${option.isClicked ? styles.isIncorrectOption : ''}`}
-                        key={option.id}
-                        onClick={() => {
-                          setPhase('checking');
-                          setSituation('gameOver');
-                          setTrueToClickedOption(option.id);
-                        }}
-                      >
-                        {option.name}
-                      </button>
-                    );
-                  })}
-                </div>
-                {phase === 'checking' && (
-                  <button
-                    className={styles.countryQuizNextBtn}
-                    onClick={() => {
-                      if (situation === 'continued') {
-                        setPhase('answering');
-                        setCorrectOptionNum(getRandomNum(optionsNum));
-                        removeOptions();
-                        createOptions();
-                        changeQuizType();
-                        setCorrectCount(prev => prev + 1)
-                      } else if (situation === 'gameOver') {
-                        setPhase('finished');
-                      }
-                    }}
-                  >
-                    Next
-                  </button>
-                )}
-              </div>
-            )
+              {phase === 'checking' && (
+                <button
+                  className={styles.countryQuizNextBtn}
+                  onClick={() => {
+                    if (situation === 'continued') {
+                      setPhase('answering');
+                      setCorrectOptionNum(getRandomNum(optionsNum));
+                      removeOptions();
+                      createOptions();
+                      changeQuizType();
+                      setCorrectCount(prev => prev + 1)
+                    } else if (situation === 'gameOver') {
+                      setPhase('finished');
+                    }
+                  }}
+                >
+                  Next
+                </button>
+              )}
+            </div>
           )}
           {phase === 'finished' && (
             <div className={styles.countryQuizResult}>
