@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './QuizTheme.module.css';
 
 type QuizThemeProps = {
-  getThemeText: () => string | undefined,
+  getThemeText: () => string | undefined;
 }
 
 function QuizTheme(props: QuizThemeProps) {

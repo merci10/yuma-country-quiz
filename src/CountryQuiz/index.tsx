@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useCountriesState } from './components/CountriesProvider';
+import FlagImg from './components/FlagImg';
 import QuizTheme from './components/QuizTheme';
 import styles from './index.module.css';
 import { Option } from './models/option';
@@ -73,11 +74,9 @@ export function CountryQuiz() {
           {(phase === 'answering' || phase === 'checking') && (
             <div className={styles.countryQuizCard}>
               {quizType === 'flag' && (
-                <div className={styles.countryQuizFlagImgOuter}>
-                  <img className={styles.countryQuizFlagImg} src={getFlagSvg()} alt="A image of the flag" width="84px" height="auto" />
-                </div>
+                <FlagImg getFlagSvg={getFlagSvg} />
               )}
-              <QuizTheme getThemeText={getThemeText}></QuizTheme>
+              <QuizTheme getThemeText={getThemeText} />
               <div className={`${styles.countryQuizOptions} ${phase === 'checking' ? styles.isChecking : styles.isAnswering}`}>
                 {options.map((option, i) => {
                   if (correctOptionNum === i) return (
