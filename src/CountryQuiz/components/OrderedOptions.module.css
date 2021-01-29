@@ -1,0 +1,126 @@
+.options {
+  display: grid;
+  gap: 25px;
+}
+
+.option {
+  position: relative;
+  width: 100%;
+  padding: 15px 56px 14px 82px;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 27px;
+  text-align: left;
+  color: rgba(96, 102, 208, 0.7);
+  background-color: #FFFFFF;
+  border: 2px solid rgba(96, 102, 208, 0.7);
+  border-radius: 12px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+/* 解答中のデザイン -------------------------------- */
+.isAnswering .option:hover {
+  color: #FFFFFF;
+  background-color: #F9A826;
+  border-color: #F9A826;
+  cursor: pointer;
+}
+
+.isAnswering .option:active {
+  opacity: 0.7;
+}
+/* 解答中のデザイン -------------------------------- */
+
+/* 答え合わせ中のデザイン ------------------------- */
+.isChecking .option.isCorrectOption {
+  color: #FFFFFF;
+  background-color: #60BF88;
+  border-color: #60BF88;
+}
+
+.isChecking .option.isCorrectOption::after {
+  display: block;
+  content: url(../images/check_circle.svg);
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translate(0, -50%);
+  width: 25px;
+  height: 25px;
+}
+
+.isChecking .isIncorrectOption {
+  color: #FFFFFF;
+  background-color: #EA8282;
+  border-color: #EA8282;
+}
+
+.isChecking .option.isIncorrectOption::after {
+  display: block;
+  content: url(../images/x_circle.svg);
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translate(0, -50%);
+  width: 25px;
+  height: 25px;
+}
+/* -------------------------- 答え合わせ中のデザイン */
+
+.option::before {
+  position: absolute;
+  top: 50%;
+  left: 19px;
+  font-size: 24px;
+  line-height: 36px;
+  transform: translate(0, -50%);
+}
+
+.option:nth-child(1)::before {
+  content: 'A';
+}
+
+.option:nth-child(2)::before {
+  content: 'B';
+}
+
+.option:nth-child(3)::before {
+  content: 'C';
+}
+
+.option:nth-child(4)::before {
+  content: 'D';
+}
+
+.option:nth-child(5)::before {
+  content: 'E';
+}
+
+.option:nth-child(6)::before {
+  content: 'F';
+}
+
+.option:nth-child(7)::before {
+  content: 'G';
+}
+
+.option:nth-child(8)::before {
+  content: 'H';
+}
+
+.option:nth-child(9)::before {
+  content: 'I';
+}
+
+.option:nth-child(10)::before {
+  content: 'J';
+}
+
+.option:nth-child(11)::before {
+  content: 'K';
+}
+
+.option:nth-child(12)::before {
+  content: 'L';
+}

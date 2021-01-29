@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useCountriesState } from './components/CountriesProvider';
 import FlagImg from './components/FlagImg';
 import QuizTheme from './components/QuizTheme';
+import OrderedOptions from './components/OrderedOptions';
+import NextBtn from './components/NextBtn';
 import styles from './index.module.css';
 import { Option } from './models/option';
 
@@ -10,7 +12,7 @@ const getRandomNum = (max: number):  number => {
   return Math.floor(Math.random() * max);
 }
 
-export function CountryQuiz() {
+function CountryQuiz() {
   const countries = useCountriesState();
   const countriesLength = countries.length;
   const optionsNum = 4; // 選択肢のカードの数
@@ -30,6 +32,10 @@ export function CountryQuiz() {
     else if (quizType === 'flag') return 'Which country does this flag belong to?'
   }
 
+  const removeOptions = () => {
+    setOptions([]);
+  }
+
   const createOptions = () => {
     for (let i = 0; i < optionsNum; i++) {
       const randNum = getRandomNum(countriesLength);
@@ -38,8 +44,10 @@ export function CountryQuiz() {
     }
   }
 
-  const removeOptions = () => {
-    setOptions([]);
+  const resetOptions = () => {
+    setCorrectOptionNum(getRandomNum(optionsNum));
+    removeOptions();
+    createOptions();
   }
 
   const setTrueToClickedOption = (id: number) => {
@@ -77,53 +85,22 @@ export function CountryQuiz() {
                 <FlagImg getFlagSvg={getFlagSvg} />
               )}
               <QuizTheme getThemeText={getThemeText} />
-              <div className={`${styles.countryQuizOptions} ${phase === 'checking' ? styles.isChecking : styles.isAnswering}`}>
-                {options.map((option, i) => {
-                  if (correctOptionNum === i) return (
-                    <button
-                      className={`${styles.countryQuizOption} ${phase === 'checking' ? styles.isCorrectOption : ''}`}
-                      key={option.id}
-                      onClick={() => {
-                        setPhase('checking')
-                        setTrueToClickedOption(option.id)
-                      }}
-                    >
-                      {option.name}だよ
-                    </button>
-                  );
-                  else return (
-                    <button
-                      className={`${styles.countryQuizOption} ${option.isClicked ? styles.isIncorrectOption : ''}`}
-                      key={option.id}
-                      onClick={() => {
-                        setPhase('checking');
-                        setSituation('gameOver');
-                        setTrueToClickedOption(option.id);
-                      }}
-                    >
-                      {option.name}
-                    </button>
-                  );
-                })}
-              </div>
+              <OrderedOptions
+                options={options}
+                phase={phase}
+                correctOptionNum={correctOptionNum}
+                setPhase={setPhase}
+                setSituation={setSituation}
+                setTrueToClickedOption={setTrueToClickedOption}
+              />
               {phase === 'checking' && (
-                <button
-                  className={styles.countryQuizNextBtn}
-                  onClick={() => {
-                    if (situation === 'continued') {
-                      setPhase('answering');
-                      setCorrectOptionNum(getRandomNum(optionsNum));
-                      removeOptions();
-                      createOptions();
-                      changeQuizType();
-                      setCorrectCount(prev => prev + 1)
-                    } else if (situation === 'gameOver') {
-                      setPhase('finished');
-                    }
-                  }}
-                >
-                  Next
-                </button>
+                <NextBtn
+                  situation={situation}
+                  setPhase={setPhase}
+                  resetOptions={resetOptions}
+                  setCorrectCount={setCorrectCount}
+                  changeQuizType={changeQuizType}
+                />
               )}
             </div>
           )}
@@ -136,12 +113,10 @@ export function CountryQuiz() {
                 className={styles.countryQuizTryAgainBtn}
                 onClick={() => {
                   setPhase('answering');
-                  setSituation('continued');
-                  setCorrectOptionNum(getRandomNum(optionsNum));
-                  removeOptions();
-                  createOptions();
-                  changeQuizType();
+                  resetOptions();
                   setCorrectCount(0);
+                  changeQuizType();
+                  setSituation('continued');
                 }}
               >
                 Try again
@@ -153,3 +128,5 @@ export function CountryQuiz() {
     </div>
   )
 }
+
+export default CountryQuiz;

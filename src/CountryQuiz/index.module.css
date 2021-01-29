@@ -32,14 +32,14 @@
   padding: 68px 32px;
 }
 
-.countryQuizFlagImgOuter {
+/* .countryQuizFlagImgOuter {
   margin-bottom: 20px;
 }
 
 .countryQuizFlagImg {
   filter: drop-shadow(0px 4px 24px rgba(0, 0, 0, 0.1));
   border-radius: 4px;
-}
+} */
 
 .countryQuizCard::before {
   content: '';
@@ -54,13 +54,13 @@
   background-repeat: no-repeat;
 }
 
-.countryQuizTheme {
+/* .countryQuizTheme {
   margin-bottom: 32px;
   font-size: 24px;
   font-weight: bold;
   line-height: 32px;
   color: #2F527B;
-}
+} */
 
 .countryQuizOptions {
   display: grid;

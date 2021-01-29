@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { CountryQuiz } from './CountryQuiz';
+import CountryQuiz from './CountryQuiz';
 import { CountriesProvider } from './CountryQuiz/components/CountriesProvider';
 import reportWebVitals from './reportWebVitals';
 
