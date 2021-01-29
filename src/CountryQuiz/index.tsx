@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useCountriesState } from './components/CountriesProvider';
+import QuizTheme from './components/QuizTheme';
 import styles from './index.module.css';
 import { Option } from './models/option';
 
@@ -25,7 +26,7 @@ export function CountryQuiz() {
     if (options.length === 0) return;
 
     if (quizType === 'capital') return `${options[correctOptionNum].capital} is the capital of`;
-    else if (quizType === 'flag') return options[correctOptionNum].name;
+    else if (quizType === 'flag') return 'Which country does this flag belong to?'
   }
 
   const createOptions = () => {
@@ -54,6 +55,10 @@ export function CountryQuiz() {
     setQuizType(quizTypes[randNum]);
   }
 
+  const getFlagSvg = (): string => {
+    return options[correctOptionNum].flag
+  }
+
   useEffect(() => {
     createOptions();
     changeQuizType();
@@ -67,7 +72,12 @@ export function CountryQuiz() {
         <div className={styles.countryQuizContainer}>
           {(phase === 'answering' || phase === 'checking') && (
             <div className={styles.countryQuizCard}>
-              <p className={styles.countryQuizTheme}>{getThemeText()}</p>
+              {quizType === 'flag' && (
+                <div className={styles.countryQuizFlagImgOuter}>
+                  <img className={styles.countryQuizFlagImg} src={getFlagSvg()} alt="A image of the flag" width="84px" height="auto" />
+                </div>
+              )}
+              <QuizTheme getThemeText={getThemeText}></QuizTheme>
               <div className={`${styles.countryQuizOptions} ${phase === 'checking' ? styles.isChecking : styles.isAnswering}`}>
                 {options.map((option, i) => {
                   if (correctOptionNum === i) return (

@@ -32,6 +32,15 @@
   padding: 68px 32px;
 }
 
+.countryQuizFlagImgOuter {
+  margin-bottom: 20px;
+}
+
+.countryQuizFlagImg {
+  filter: drop-shadow(0px 4px 24px rgba(0, 0, 0, 0.1));
+  border-radius: 4px;
+}
+
 .countryQuizCard::before {
   content: '';
   display: block;
@@ -252,5 +261,4 @@
   box-sizing: border-box;
   outline: none;
 }
-
 /* resultページ ---------------------------------------- */
