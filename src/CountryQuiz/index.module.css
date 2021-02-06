@@ -62,7 +62,7 @@
   color: #2F527B;
 } */
 
-.countryQuizOptions {
+/* .countryQuizOptions {
   display: grid;
   gap: 25px;
 }
@@ -81,10 +81,10 @@
   border-radius: 12px;
   box-sizing: border-box;
   outline: none;
-}
+} */
 
 /* 解答中のデザイン -------------------------------- */
-.isAnswering .countryQuizOption:hover {
+/* .isAnswering .countryQuizOption:hover {
   color: #FFFFFF;
   background-color: #F9A826;
   border-color: #F9A826;
@@ -93,11 +93,11 @@
 
 .isAnswering .countryQuizOption:active {
   opacity: 0.7;
-}
+} */
 /* 解答中のデザイン -------------------------------- */
 
 /* 答え合わせ中のデザイン ------------------------- */
-.isChecking .countryQuizOption.isCorrectOption {
+/* .isChecking .countryQuizOption.isCorrectOption {
   color: #FFFFFF;
   background-color: #60BF88;
   border-color: #60BF88;
@@ -129,10 +129,10 @@
   transform: translate(0, -50%);
   width: 25px;
   height: 25px;
-}
+} */
 /* -------------------------- 答え合わせ中のデザイン */
 
-.countryQuizOption::before {
+/* .countryQuizOption::before {
   position: absolute;
   top: 50%;
   left: 19px;
@@ -187,10 +187,9 @@
 
 .countryQuizOption:nth-child(12)::before {
   content: 'L';
-}
+} */
 
-
-.countryQuizNextBtn {
+/* .countryQuizNextBtn {
   display: block;
   margin: 24px 0 -36px auto;
   padding: 15px 36px 14px 37px;
@@ -208,7 +207,7 @@
 
 .countryQuizNextBtn:active {
   opacity: 0.7;
-}
+} */
 
 /* resultページ ---------------------------------------- */
 .countryQuizResult {

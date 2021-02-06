@@ -4,6 +4,7 @@ import FlagImg from './components/FlagImg';
 import QuizTheme from './components/QuizTheme';
 import OrderedOptions from './components/OrderedOptions';
 import NextBtn from './components/NextBtn';
+import Result from './components/Result';
 import styles from './index.module.css';
 import { Option } from './models/option';
 
@@ -105,23 +106,14 @@ function CountryQuiz() {
             </div>
           )}
           {phase === 'finished' && (
-            <div className={styles.countryQuizResult}>
-              <div className={styles.countryQuizResultImg}></div>
-              <p className={styles.countryQuizResultTitle}>Result</p>
-              <p className={styles.countryQuizResultDescription}>You got <span className={styles.countryQuizResultCorrectAnswerCount}>{correctCount}</span> correct asnwers</p>
-              <button
-                className={styles.countryQuizTryAgainBtn}
-                onClick={() => {
-                  setPhase('answering');
-                  resetOptions();
-                  setCorrectCount(0);
-                  changeQuizType();
-                  setSituation('continued');
-                }}
-              >
-                Try again
-              </button>
-            </div>
+            <Result
+              correctCount={correctCount}
+              setCorrectCount={setCorrectCount}
+              setPhase={setPhase}
+              resetOptions={resetOptions}
+              changeQuizType={changeQuizType}
+              setSituation={setSituation}
+            />
           )}
         </div>
       </div>
