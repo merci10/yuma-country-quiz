@@ -85,7 +85,7 @@ function CountryQuiz() {
               {quizType === 'flag' && (
                 <FlagImg flag={getFlagSvg()} />
               )}
-              <QuizTheme getThemeText={getThemeText} />
+              <QuizTheme themeText={getThemeText()} />
               <OrderedOptions
                 options={options}
                 phase={phase}
