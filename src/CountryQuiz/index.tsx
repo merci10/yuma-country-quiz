@@ -83,7 +83,7 @@ function CountryQuiz() {
           {(phase === 'answering' || phase === 'checking') && (
             <div className={styles.countryQuizCard}>
               {quizType === 'flag' && (
-                <FlagImg getFlagSvg={getFlagSvg} />
+                <FlagImg flag={getFlagSvg()} />
               )}
               <QuizTheme getThemeText={getThemeText} />
               <OrderedOptions

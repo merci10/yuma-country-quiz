@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './FlagImg.module.css';
 
 type FlagImgProps = {
-  getFlagSvg: () => string;
+  flag: string;
 }
 
 function FlagImg(props: FlagImgProps) {
@@ -10,8 +10,8 @@ function FlagImg(props: FlagImgProps) {
     <div className={styles.flagImgOuter}>
       <img
         className={styles.flagImg}
-        src={props.getFlagSvg()}
-        alt="A image of the flag"
+        src={props.flag}
+        alt="A flag"
         width="84px"
         height="auto"
       />
