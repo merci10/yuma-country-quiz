@@ -17,9 +17,8 @@ function CountryQuiz() {
   const countries = useCountriesState();
   const countriesLength = countries.length;
   const optionsNum = 4; // 選択肢のカードの数
-  const quizTypes = ['capital', 'flag'];
 
-  const [quizType, setQuizType] = useState('');
+  const [quizType, setQuizType] = useState<'capital' | 'flag'>('capital');
   const [options, setOptions] = useState<Option[]>([]); // 選択肢の国の配列
   const [situation, setSituation] = useState('continued'); //  正解したか不正解したか
   const [correctCount, setCorrectCount] = useState(0); // 正解数
@@ -61,8 +60,8 @@ function CountryQuiz() {
   }
 
   const changeQuizType = () => {
-    const randNum = getRandomNum(quizTypes.length);
-    setQuizType(quizTypes[randNum]);
+
+    setQuizType('capital');
   }
 
   const getFlagSvg = (): string => {
