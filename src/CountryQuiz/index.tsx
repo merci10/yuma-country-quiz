@@ -60,8 +60,8 @@ function CountryQuiz() {
   }
 
   const changeQuizType = () => {
-
-    setQuizType('capital');
+    const random = Math.random();
+    setQuizType(random < 0.5 ? 'capital' : 'flag');
   }
 
   const getFlagSvg = (): string => {
