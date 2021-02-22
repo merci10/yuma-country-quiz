@@ -4,7 +4,7 @@ import styles from './Result.module.css';
 type ResultProps = {
   correctCount: number;
   setCorrectCount: (value: React.SetStateAction<number>) => void;
-  setPhase: (value: React.SetStateAction<string>) => void;
+  setPhase: (value: React.SetStateAction<"answering" | "checking" | "resulting">) => void;
   resetOptions: () => void;
   changeQuizType: () => void
   setSituation: (value: React.SetStateAction<string>) => void;

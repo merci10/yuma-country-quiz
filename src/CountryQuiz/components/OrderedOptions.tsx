@@ -6,7 +6,7 @@ type OrderedOptionsProps = {
   options: Option[];
   phase: string;
   correctOptionNum: number;
-  setPhase: (value: React.SetStateAction<string>) => void;
+  setPhase: (value: React.SetStateAction<"answering" | "checking" | "resulting">) => void;
   setSituation: (value: React.SetStateAction<string>) => void;
   setTrueToClickedOption: (id: number) => void;
 }

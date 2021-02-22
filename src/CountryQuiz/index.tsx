@@ -23,7 +23,7 @@ function CountryQuiz() {
   const [situation, setSituation] = useState('continued'); //  正解したか不正解したか
   const [correctCount, setCorrectCount] = useState(0); // 正解数
   const [correctOptionNum, setCorrectOptionNum] = useState(getRandomNum(optionsNum)); // options配列の何番目を正解にするかの数
-  const [phase, setPhase] = useState('answering'); // 解答中or答え合わせor結果
+  const [phase, setPhase] = useState<'answering' | 'checking' | 'resulting'>('answering'); // 解答中or答え合わせor結果
 
   const getThemeText = () => {
     if (options.length === 0) return;
@@ -104,7 +104,7 @@ function CountryQuiz() {
               )}
             </div>
           )}
-          {phase === 'finished' && (
+          {phase === 'resulting' && (
             <Result
               correctCount={correctCount}
               setCorrectCount={setCorrectCount}

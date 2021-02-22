@@ -3,7 +3,7 @@ import styles from './NextBtn.module.css';
 
 type NextBtnProps = {
   situation: string;
-  setPhase: (value: React.SetStateAction<string>) => void;
+  setPhase: (value: React.SetStateAction<"answering" | "checking" | "resulting">) => void;
   resetOptions: () => void;
   setCorrectCount: (value: React.SetStateAction<number>) => void;
   changeQuizType: () => void;
@@ -20,7 +20,7 @@ function NextBtn(props: NextBtnProps) {
           props.setCorrectCount(prev => prev + 1)
           props.changeQuizType();
         } else if (props.situation === 'gameOver') {
-          props.setPhase('finished');
+          props.setPhase('resulting');
         }
       }}
     >
