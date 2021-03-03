@@ -55,5 +55,5 @@ interface Language {
 interface Currency {
   code: string | null;
   name: string;
-  symbol: string|null;
+  symbol: string | null;
 }

@@ -3,5 +3,6 @@ export interface Option {
   name: string;
   capital: string;
   flag: string;
+  isCorrect: boolean;
   isClicked: boolean;
 }

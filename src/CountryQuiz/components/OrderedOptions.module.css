@@ -12,7 +12,7 @@
   line-height: 27px;
   text-align: left;
   color: rgba(96, 102, 208, 0.7);
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border: 2px solid rgba(96, 102, 208, 0.7);
   border-radius: 12px;
   box-sizing: border-box;
@@ -21,9 +21,9 @@
 
 /* 解答中のデザイン -------------------------------- */
 .isAnswering .option:hover {
-  color: #FFFFFF;
-  background-color: #F9A826;
-  border-color: #F9A826;
+  color: #ffffff;
+  background-color: #f9a826;
+  border-color: #f9a826;
   cursor: pointer;
 }
 
@@ -34,9 +34,9 @@
 
 /* 答え合わせ中のデザイン ------------------------- */
 .isChecking .option.isCorrectOption {
-  color: #FFFFFF;
-  background-color: #60BF88;
-  border-color: #60BF88;
+  color: #ffffff;
+  background-color: #60bf88;
+  border-color: #60bf88;
 }
 
 .isChecking .option.isCorrectOption::after {
@@ -51,9 +51,9 @@
 }
 
 .isChecking .isIncorrectOption {
-  color: #FFFFFF;
-  background-color: #EA8282;
-  border-color: #EA8282;
+  color: #ffffff;
+  background-color: #ea8282;
+  border-color: #ea8282;
 }
 
 .isChecking .option.isIncorrectOption::after {
@@ -78,49 +78,49 @@
 }
 
 .option:nth-child(1)::before {
-  content: 'A';
+  content: "A";
 }
 
 .option:nth-child(2)::before {
-  content: 'B';
+  content: "B";
 }
 
 .option:nth-child(3)::before {
-  content: 'C';
+  content: "C";
 }
 
 .option:nth-child(4)::before {
-  content: 'D';
+  content: "D";
 }
 
 .option:nth-child(5)::before {
-  content: 'E';
+  content: "E";
 }
 
 .option:nth-child(6)::before {
-  content: 'F';
+  content: "F";
 }
 
 .option:nth-child(7)::before {
-  content: 'G';
+  content: "G";
 }
 
 .option:nth-child(8)::before {
-  content: 'H';
+  content: "H";
 }
 
 .option:nth-child(9)::before {
-  content: 'I';
+  content: "I";
 }
 
 .option:nth-child(10)::before {
-  content: 'J';
+  content: "J";
 }
 
 .option:nth-child(11)::before {
-  content: 'K';
+  content: "K";
 }
 
 .option:nth-child(12)::before {
-  content: 'L';
+  content: "L";
 }

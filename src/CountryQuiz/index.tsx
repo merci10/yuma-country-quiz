@@ -1,115 +1,113 @@
-import React, { useEffect, useState } from 'react';
-import { useCountriesState } from './components/CountriesProvider';
-import FlagImg from './components/FlagImg';
-import QuizTheme from './components/QuizTheme';
-import OrderedOptions from './components/OrderedOptions';
-import NextBtn from './components/NextBtn';
-import Result from './components/Result';
-import styles from './index.module.css';
-import { Option } from './models/option';
+import React, { useState } from "react";
+import { useCountriesState } from "./components/CountriesProvider";
+import FlagImg from "./components/FlagImg";
+import QuizTheme from "./components/QuizTheme";
+import OrderedOptions from "./components/OrderedOptions";
+import NextBtn from "./components/NextBtn";
+import Result from "./components/Result";
+import styles from "./index.module.css";
+import { Option } from "./models/option";
 
-// 0 ~ (max以下) の整数を返す
-const getRandomNum = (max: number):  number => {
+// 0 ~ (max未満) の整数を返す
+const getRandomNum = (max: number): number => {
   return Math.floor(Math.random() * max);
-}
+};
 
 function CountryQuiz() {
   const countries = useCountriesState();
-  const countriesLength = countries.length;
   const optionsNum = 4; // 選択肢のカードの数
 
-  const [quizType, setQuizType] = useState<'capital' | 'flag'>('capital');
-  const [options, setOptions] = useState<Option[]>([]); // 選択肢の国の配列
-  const [situation, setSituation] = useState('continued'); //  正解したか不正解したか
+  const createOptions = () => {
+    const correctNum = getRandomNum(optionsNum);
+
+    const newOptions: Option[] = [...Array(optionsNum).keys()].map((num) => {
+      const randNum = getRandomNum(countries.length);
+      const country = countries[randNum];
+
+      return {
+        id: num,
+        ...country,
+        isCorrect: num === correctNum,
+        isClicked: false,
+      };
+    });
+
+    return newOptions;
+  };
+
+  const getQuizType = () => {
+    const random = Math.random();
+    return random < 0.5 ? "capital" : "flag";
+  };
+
+  const [quizType, setQuizType] = useState<"capital" | "flag">(getQuizType());
+  const [options, setOptions] = useState<Option[]>(createOptions()); // 選択肢の国の配列
+  const [situation, setSituation] = useState("continued"); //  正解したか不正解したか
   const [correctCount, setCorrectCount] = useState(0); // 正解数
-  const [correctOptionNum, setCorrectOptionNum] = useState(getRandomNum(optionsNum)); // options配列の何番目を正解にするかの数
-  const [phase, setPhase] = useState<'answering' | 'checking' | 'resulting'>('answering'); // 解答中or答え合わせor結果
+  const correctOptionIndex = options.findIndex(option => option.isCorrect); // options配列の何番目を正解にするかの数
+  const [phase, setPhase] = useState<"answering" | "checking" | "resulting">(
+    "answering"
+  ); // 解答中or答え合わせor結果
+
+  const changeQuizType = () => setQuizType(getQuizType());
+
+  const changeOptions = () => setOptions(createOptions());
 
   const getThemeText = () => {
-    if (options.length === 0) return;
-
-    if (quizType === 'capital') return `${options[correctOptionNum].capital} is the capital of`;
-    else if (quizType === 'flag') return 'Which country does this flag belong to?'
-  }
-
-  const removeOptions = () => {
-    setOptions([]);
-  }
-
-  const createOptions = () => {
-    for (let i = 0; i < optionsNum; i++) {
-      const randNum = getRandomNum(countriesLength);
-      const country = countries[randNum];
-      setOptions(prev => [...prev, {id: i, ...country, isClicked: false}]);
-    }
-  }
-
-  const resetOptions = () => {
-    setCorrectOptionNum(getRandomNum(optionsNum));
-    removeOptions();
-    createOptions();
-  }
+    if (quizType === "capital")
+      return `${options[correctOptionIndex].capital} is the capital of`;
+    else if (quizType === "flag")
+      return "Which country does this flag belong to?";
+  };
 
   const setTrueToClickedOption = (id: number) => {
-    if (phase === 'checking') return;
+    if (phase === "checking") return;
 
-    setOptions(prev => prev.map(option => {
-      if (option.id !== id) return option;
-      return {...option, isClicked: true};
-    }));
-  }
-
-  const changeQuizType = () => {
-    const random = Math.random();
-    setQuizType(random < 0.5 ? 'capital' : 'flag');
-  }
+    setOptions((prev) =>
+      prev.map((option) => {
+        if (option.id !== id) return option;
+        return { ...option, isClicked: true };
+      })
+    );
+  };
 
   const getFlagSvg = (): string => {
-    return options[correctOptionNum].flag
-  }
-
-  useEffect(() => {
-    createOptions();
-    changeQuizType();
-  }, []);
-
+    return options[correctOptionIndex].flag;
+  };
 
   return (
     <div className={styles.countryQuiz}>
       <div className={styles.countryQuizInner}>
         <p className={styles.countryQuizTitle}>COUNTRY QUIZ</p>
         <div className={styles.countryQuizContainer}>
-          {(phase === 'answering' || phase === 'checking') && (
+          {(phase === "answering" || phase === "checking") && (
             <div className={styles.countryQuizCard}>
-              {quizType === 'flag' && (
-                <FlagImg flag={getFlagSvg()} />
-              )}
+              {quizType === "flag" && <FlagImg flag={getFlagSvg()} />}
               <QuizTheme themeText={getThemeText()} />
               <OrderedOptions
                 options={options}
                 phase={phase}
-                correctOptionNum={correctOptionNum}
                 setPhase={setPhase}
                 setSituation={setSituation}
                 setTrueToClickedOption={setTrueToClickedOption}
               />
-              {phase === 'checking' && (
+              {phase === "checking" && (
                 <NextBtn
                   situation={situation}
                   setPhase={setPhase}
-                  resetOptions={resetOptions}
+                  changeOptions={changeOptions}
                   setCorrectCount={setCorrectCount}
                   changeQuizType={changeQuizType}
                 />
               )}
             </div>
           )}
-          {phase === 'resulting' && (
+          {phase === "resulting" && (
             <Result
               correctCount={correctCount}
               setCorrectCount={setCorrectCount}
               setPhase={setPhase}
-              resetOptions={resetOptions}
+              changeOptions={changeOptions}
               changeQuizType={changeQuizType}
               setSituation={setSituation}
             />
@@ -117,7 +115,7 @@ function CountryQuiz() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default CountryQuiz;

@@ -1,9 +1,9 @@
-import React from 'react';
-import styles from './FlagImg.module.css';
+import React from "react";
+import styles from "./FlagImg.module.css";
 
 type FlagImgProps = {
   flag: string;
-}
+};
 
 function FlagImg(props: FlagImgProps) {
   return (
@@ -16,7 +16,7 @@ function FlagImg(props: FlagImgProps) {
         height="auto"
       />
     </div>
-  )
+  );
 }
 
 export default FlagImg;
