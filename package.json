@@ -1,6 +1,7 @@
 {
   "name": "yuma-country-quiz",
   "version": "0.1.0",
+  "homepage": "https://merci10.github.io/yuma-country-quiz",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.9",
@@ -10,6 +11,7 @@
     "@types/node": "^12.19.13",
     "@types/react": "^16.14.2",
     "@types/react-dom": "^16.9.10",
+    "gh-pages": "^4.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.1",
@@ -20,6 +22,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "deploy": "npm run build && gh-pages -d build",
     "eject": "react-scripts eject",
     "format": "prettier --write '**/*.{js,jsx,ts,tsx,json,css,scss}'"
   },
