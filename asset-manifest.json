@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/yuma-country-quiz/static/css/main.88c17b15.chunk.css",
+    "main.js": "/yuma-country-quiz/static/js/main.c6085dcb.chunk.js",
+    "main.js.map": "/yuma-country-quiz/static/js/main.c6085dcb.chunk.js.map",
+    "runtime-main.js": "/yuma-country-quiz/static/js/runtime-main.94f809cd.js",
+    "runtime-main.js.map": "/yuma-country-quiz/static/js/runtime-main.94f809cd.js.map",
+    "static/js/2.aff917bf.chunk.js": "/yuma-country-quiz/static/js/2.aff917bf.chunk.js",
+    "static/js/2.aff917bf.chunk.js.map": "/yuma-country-quiz/static/js/2.aff917bf.chunk.js.map",
+    "static/js/3.15ce8992.chunk.js": "/yuma-country-quiz/static/js/3.15ce8992.chunk.js",
+    "static/js/3.15ce8992.chunk.js.map": "/yuma-country-quiz/static/js/3.15ce8992.chunk.js.map",
+    "index.html": "/yuma-country-quiz/index.html",
+    "static/css/main.88c17b15.chunk.css.map": "/yuma-country-quiz/static/css/main.88c17b15.chunk.css.map",
+    "static/js/2.aff917bf.chunk.js.LICENSE.txt": "/yuma-country-quiz/static/js/2.aff917bf.chunk.js.LICENSE.txt",
+    "static/media/index.module.css": "/yuma-country-quiz/static/media/undraw_adventure_4hum 1.182b6171.svg",
+    "static/media/OrderedOptions.module.css": "/yuma-country-quiz/static/media/x_circle.f5f1e34c.svg",
+    "static/media/Result.module.css": "/yuma-country-quiz/static/media/undraw_winners_ao2o 2.d76bfdf8.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.94f809cd.js",
+    "static/js/2.aff917bf.chunk.js",
+    "static/css/main.88c17b15.chunk.css",
+    "static/js/main.c6085dcb.chunk.js"
+  ]
+}
